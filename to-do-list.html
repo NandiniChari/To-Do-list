@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO-List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="box"> <h2>To Do List</h2>
+        <input type="text" placeholder="write here...." id="inputBx">
+    <ul class="list"></ul>
+    </div>
+    </div>
+    <script>
+        
+         let inputBx = document.querySelector('#inputBx');
+let list = document.querySelector('.list'); // Change the selector to '.list'
+
+document.addEventListener("keyup", function(event){ // Change the event listener to listen on the whole document
+    if (event.key == "Enter"){
+        addItem(inputBx.value); // Pass the inputBx.value to the addItem function
+        inputBx.value = "";
+    }
+});
+
+let addItem = (task) => { // Use "task" instead of "inputBx" as the parameter
+    let listItem = document.createElement("li");
+    listItem.innerHTML = `${task}<i></i>`;
+
+    listItem.addEventListener("click", function(){
+        this.classList.toggle('done');
+    });
+
+    listItem.querySelector("i").addEventListener("click", function(){
+        listItem.remove();
+    });
+
+    list.appendChild(listItem);
+};
+
+    </script>
+</body>
+</html>
